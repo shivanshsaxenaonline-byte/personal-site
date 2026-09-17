@@ -29,13 +29,12 @@ const [CONTACT_LOCAL_PART, CONTACT_DOMAIN] = CONTACT_ADDRESS.split('@');
  */
 const messages = [
   CONTACT_LOCAL_PART,
-  `${CONTACT_LOCAL_PART}+hello`,
   `${CONTACT_LOCAL_PART}+hi`,
-  `${CONTACT_LOCAL_PART}+anything-really`,
-  `${CONTACT_LOCAL_PART}+work-with-me`,
-  `${CONTACT_LOCAL_PART}+about-a-project`,
-  `${CONTACT_LOCAL_PART}+just-saying-hi`,
-  `${CONTACT_LOCAL_PART}+i-like-your-site`,
+  `${CONTACT_LOCAL_PART}+hello`,
+  `${CONTACT_LOCAL_PART}+work`,
+  `${CONTACT_LOCAL_PART}+hire`,
+  `${CONTACT_LOCAL_PART}+project`,
+  `${CONTACT_LOCAL_PART}+anything`,
   `${CONTACT_LOCAL_PART}+thanks`,
 ];
 
