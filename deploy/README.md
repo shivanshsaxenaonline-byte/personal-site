@@ -51,31 +51,67 @@ fallback` and renders placeholder numbers. That is expected and harmless.
 is-a.dev answers every name through a wildcard, so check for
 `domains/<name>.json` in their repository instead.
 
-## 4. Optional: email at the domain
+## 4. Email at the domain
 
-The contact page animates through aliases, and the link resolves to whatever
-`email` is set to in `src/data/profile.json`. It is currently a Gmail address,
-and the aliases use Gmail's `+suffix` form, which genuinely works today.
+The contact page animates through aliases and the link resolves to whatever
+`email` is set to in `src/data/profile.json`.
 
-To receive mail at `you@shivanshsaxena.is-a.dev` instead, add ImprovMX records
-to the same is-a.dev JSON file:
+Right now that is a Gmail address and the aliases use Gmail's `+suffix` form.
+Those work today, but only the part _after_ the `+` is free — the local part is
+fixed. `hello@gmail.com` is a stranger's address, not yours. A true catch-all,
+where anything before the `@` reaches you, needs your own domain.
 
-```json
-"MX": ["mx1.improvmx.com", "mx2.improvmx.com"],
-"TXT": ["v=spf1 include:spf.improvmx.com ~all"]
-```
+### Receiving anything@shivanshsaxena.is-a.dev — free
 
-Then create the domain at <https://improvmx.com> and point its aliases at your
-Gmail. The free tier forwards 500 emails a day across 25 aliases.
+The MX and SPF records are already in `is-a-dev/shivanshsaxena.json`. They are
+fixed ImprovMX values, not account-specific, so they go in with the same pull
+request that sets up the site.
 
-Two limits worth knowing before you rely on it:
+After the pull request merges:
 
-- The free tier has **no SMTP sending**. You can receive at the address but not
-  send from it without a separate relay.
-- True wildcard catch-all is not confirmed on the free tier. Twenty-five named
-  aliases cover the contact-page joke either way.
+1. Create an account at <https://improvmx.com> and add
+   `shivanshsaxena.is-a.dev` as the domain.
+2. ImprovMX creates a catch-all alias (`*`) by default. Point it at your Gmail.
+3. Verify the destination address from the email it sends.
 
-Once mail is arriving, change `email` in `src/data/profile.json`, and drop the
-`${CONTACT_LOCAL_PART}+` prefix from the alias list in
-`src/components/Contact/EmailLink.tsx` so it cycles bare words. Do not make that
-second change before the mailbox works — those addresses would bounce.
+Every address at the domain now forwards to your inbox. The free tier allows
+500 forwards a day across 25 named aliases, and the catch-all is included.
+
+Then make the site match:
+
+- Set `email` in `src/data/profile.json` to `hi@shivanshsaxena.is-a.dev`.
+- In `src/components/Contact/EmailLink.tsx`, drop the `${CONTACT_LOCAL_PART}+`
+  prefix from the alias list so it cycles bare words — `hello`, `hi`,
+  `anything`. That is the joke the catch-all finally earns.
+
+Do not make that second change before mail is actually arriving. Those
+addresses would bounce.
+
+### Sending from it — the part that costs something
+
+Receiving is free. Sending is where it gets awkward, and the reason is a
+deadline, not a limitation of this setup:
+
+> Starting January 2027, Gmail no longer supports "Send as" for third-party
+> email addresses.
+
+Google's transition window is Q3–Q4 2026. Plus-aliases of your own Gmail,
+other Gmail addresses, and Google Workspace aliases are unaffected; a free
+Gmail account sending as your own custom domain over SMTP is the case being
+removed. ImprovMX's free tier has no SMTP either, so it cannot send regardless.
+
+Four options, none of them blocking:
+
+1. **Reply from Gmail.** Mail arrives at the custom address and you answer from
+   your Gmail. Slightly inconsistent, costs nothing, works forever.
+2. **Zoho Mail free tier.** A real mailbox on the domain, send and receive,
+   five users, 5 GB each, free permanently. Webmail and mobile app only — no
+   IMAP — so it lives outside Gmail. is-a.dev documents the DNS setup at
+   <https://docs.is-a.dev/guides/zoho-mail/>, and note Zoho is regional, so an
+   Indian account uses `zoho.in` hosts rather than `zoho.com`.
+3. **A desktop client** such as Thunderbird. Google confirms IMAP/SMTP in
+   desktop clients keeps working.
+4. **Google Workspace**, around ₹136 per user per month in India. The only way
+   to keep a custom domain inside the Gmail web interface long-term.
+
+Option 1 is fine until the contact form starts mattering.
