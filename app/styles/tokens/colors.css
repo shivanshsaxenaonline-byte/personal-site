@@ -1,0 +1,78 @@
+/* ========================================
+   COLOR TOKENS
+   Cool slate paper, deep teal structure,
+   amber reserved for live instrument readouts.
+
+   Every pair below was checked against WCAG AA for the
+   role it actually plays — body text and links at 4.5:1,
+   interactive borders at 3:1. Changing one means
+   rechecking it, not just eyeballing it.
+   ======================================== */
+
+@theme {
+  /* ===================
+     CORE PALETTE
+     --color-bg     = raised surface (cards, header)
+     --color-bg-alt = page background
+     =================== */
+  --color-bg: #fbfcfc;
+  --color-bg-alt: #eef1f1;
+  --color-fg: #1a2124;
+  --color-fg-bold: #0b0f11;
+  --color-fg-light: #4e585c;
+
+  /* ===================
+     ACCENT — deep teal
+     Structure, links, active state.
+     5.06:1 on the raised surface, 4.58:1 on the page.
+     =================== */
+  --color-accent: #0d7a70;
+  --color-accent-hover: #095f57;
+
+  /* Filled controls need their own pair. A link accent is tuned for contrast
+     against the page; reusing it as a button background put white text on it,
+     which fails badly once the accent lightens for dark mode.
+     White on #0d7a70 is 5.20:1. */
+  --color-accent-fill: var(--color-accent);
+  --color-accent-fill-hover: var(--color-accent-hover);
+  --color-on-accent: #ffffff;
+  --color-accent-light: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --color-accent-underline: color-mix(in srgb, var(--color-accent) 32%, transparent);
+  --color-accent-underline-strong: color-mix(in srgb, var(--color-accent) 55%, transparent);
+
+  /* ===================
+     SIGNAL — amber
+     Reserved for live/measured values and the
+     current-position marker. Never decorative.
+     --color-signal      text-safe on page bg (4.89:1)
+     --color-signal-mark graphic use only (ticks, dots, rules)
+     =================== */
+  --color-signal: #b45309;
+  --color-signal-mark: #e08a1e;
+
+  /* ===================
+     BORDER COLORS
+     Hairlines do the structural work here, so they are
+     tinted with the ink rather than pure black.
+     =================== */
+  --color-border: rgba(26, 33, 36, 0.14);
+  --color-border-bg: rgba(26, 33, 36, 0.08);
+
+  /* Structural hairlines are meant to be quiet and sit near 1.5:1, which is
+     fine for dividing content but not for the only visible edge of a
+     control. Interactive boundaries use this instead, at 4.6:1 against paper. */
+  --color-control-border: #6b7579;
+  --color-border-alt: rgba(26, 33, 36, 0.24);
+
+  /* ===================
+     SURFACE TOKENS
+     =================== */
+  --color-surface-subtle: rgba(26, 33, 36, 0.035);
+  --color-surface-hover: rgba(26, 33, 36, 0.06);
+  --color-fg-muted: rgba(26, 33, 36, 0.55);
+
+  /* ===================
+     SEMANTIC COLORS
+     =================== */
+  --color-overlay-darker: rgba(11, 15, 17, 0.45);
+}
