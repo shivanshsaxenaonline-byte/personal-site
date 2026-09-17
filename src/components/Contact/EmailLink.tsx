@@ -17,25 +17,25 @@ const [CONTACT_LOCAL_PART, CONTACT_DOMAIN] = CONTACT_ADDRESS.split('@');
  * The aliases the prefix cycles through.
  *
  * The link always resolves to `CONTACT_ADDRESS`, so these are decorative — but
- * they should still be true, because the joke is that they all reach you.
- * Gmail delivers anything of the form `you+suffix@gmail.com` to your inbox, so
- * every alias below really does work today.
+ * they should still be true, because the joke is that they all reach you. The
+ * domain's MX records point at ImprovMX with a catch-all alias, so every local
+ * part at the domain is delivered to the same inbox.
  *
- * If you move to your own domain with a catch-all mailbox, you can drop the
- * `${CONTACT_LOCAL_PART}+` prefix and cycle bare words instead — `hello`,
- * `hi`, `please-work-for-us` — which is what a catch-all buys you. Do not make
- * that change before the catch-all exists: those addresses would bounce, or
- * worse, reach somebody else.
+ * Plain words only. A catch-all accepts hyphens and dots too, but the address
+ * reads as a sentence fragment when it is just words, and it wraps cleanly.
+ * If the catch-all is ever removed, this list has to go back to addresses that
+ * exist, or visitors will write to mailboxes that bounce.
  */
 const messages = [
   CONTACT_LOCAL_PART,
-  `${CONTACT_LOCAL_PART}+hi`,
-  `${CONTACT_LOCAL_PART}+hello`,
-  `${CONTACT_LOCAL_PART}+work`,
-  `${CONTACT_LOCAL_PART}+hire`,
-  `${CONTACT_LOCAL_PART}+project`,
-  `${CONTACT_LOCAL_PART}+anything`,
-  `${CONTACT_LOCAL_PART}+thanks`,
+  'hello',
+  'hireme',
+  'projects',
+  'collab',
+  'anything',
+  'literallyanything',
+  'whatever',
+  'thanks',
 ];
 
 function useInterval(callback: () => void, delay: number | null) {
