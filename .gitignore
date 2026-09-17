@@ -53,3 +53,9 @@ Thumbs.db
 .grunt/
 .lock-wscript
 nohup.out
+
+# Added by `vercel link`. `.env*` would also swallow the committed
+# `.env.example`, which is documentation rather than a secret.
+.vercel
+.env*
+!.env.example
