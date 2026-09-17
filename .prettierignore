@@ -16,3 +16,8 @@ pnpm-lock.yaml
 yarn.lock
 *.tsbuildinfo
 next-env.d.ts
+
+# The completed is-a.dev pull request template. Their validator requires the
+# template to be unmodified, and Prettier reflows it — which is exactly the
+# kind of change that fails their check.
+deploy/is-a-dev/PR-BODY.md

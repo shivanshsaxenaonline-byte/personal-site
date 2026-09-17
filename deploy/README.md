@@ -51,6 +51,22 @@ fallback` and renders placeholder numbers. That is expected and harmless.
 is-a.dev answers every name through a wildcard, so check for
 `domains/<name>.json` in their repository instead.
 
+### If the pull request is denied
+
+is-a.dev's review bot closes a request automatically when the PR template is
+not fully filled in — every checkbox ticked, plus the website preview and
+purpose between their comment markers. The denial is not a judgement on the
+records; the `Tests` check can pass while the template check fails.
+
+A denied PR can normally be reopened from the button at the bottom of the page.
+When that button does not appear, open a new pull request from the same branch
+instead — the branch and its files are untouched by the denial:
+
+    https://github.com/is-a-dev/register/compare/main...shivanshsaxenaonline-byte:register:add-shivanshsaxena?expand=1
+
+GitHub loads a blank template into a new pull request, so paste the completed
+one from `PR-BODY.md` in this folder over it rather than filling it in again.
+
 ## 4. Email at the domain
 
 The contact page animates through aliases and the link resolves to whatever
