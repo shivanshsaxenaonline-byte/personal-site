@@ -30,5 +30,5 @@ If you are trying to get a messy business process into software that people will
 
 # Get in touch
 
-The fastest way to reach me is [email](/contact/). I am also on [GitHub](https://github.com/shivanshsaxenaonline-byte) and [LinkedIn](https://www.linkedin.com/in/shivansh-saxena).
+The fastest way to reach me is [email](/contact/). I am also on [GitHub](https://github.com/shivanshsaxenaonline-byte) and [LinkedIn](https://www.linkedin.com/in/shivansh-saxena-033606252/).
 `;

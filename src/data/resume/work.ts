@@ -16,7 +16,7 @@ const work: Position[] = [
     name: 'Kapeefit Health Brand',
     position: 'AI Automation & Full-Stack Developer',
     url: 'https://kapeefit.com',
-    startDate: '2026-01-01',
+    startDate: '2026',
     summary: `An IIT Mandi-supported healthcare startup. I independently design and build the
     internal software: CRM systems, management dashboards, workflow automations, APIs,
     databases, analytics tools, and AI-enabled business solutions.`,
@@ -32,8 +32,8 @@ const work: Position[] = [
     name: 'Patanjali',
     position: 'Software & Data Analytics Intern',
     url: 'https://www.patanjaliayurved.net',
-    startDate: '2025-01-01',
-    endDate: '2025-12-31',
+    startDate: '2025',
+    endDate: '2025',
     summary: `Worked on billing and operational software, and analysed business datasets to
     improve visibility into sales and performance.`,
     highlights: [

@@ -18,7 +18,7 @@ const data: ContactItem[] = [
     icon: faGithub,
   },
   {
-    link: 'https://www.linkedin.com/in/shivansh-saxena',
+    link: 'https://www.linkedin.com/in/shivansh-saxena-033606252/',
     label: 'LinkedIn',
     icon: faLinkedinIn,
   },

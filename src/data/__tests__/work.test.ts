@@ -38,12 +38,22 @@ describe('work data', () => {
     }
   });
 
-  it('endDate is after startDate when present', () => {
+  /* Dates are stored at the precision actually known — `YYYY` for a role whose
+     months are not recorded, `YYYY-MM-DD` where they are. A year-only role
+     therefore has an end equal to its start, which is correct rather than
+     backwards, so equality is only tolerated when both ends share a format. */
+  it('endDate is not before startDate when present', () => {
     for (const job of work) {
-      if (job.endDate) {
-        const start = new Date(job.startDate);
-        const end = new Date(job.endDate);
-        expect(end.getTime()).toBeGreaterThan(start.getTime());
+      if (!job.endDate) continue;
+
+      const start = new Date(job.startDate).getTime();
+      const end = new Date(job.endDate).getTime();
+      const samePrecision = job.startDate.length === job.endDate.length;
+
+      if (samePrecision) {
+        expect(end).toBeGreaterThanOrEqual(start);
+      } else {
+        expect(end).toBeGreaterThan(start);
       }
     }
   });
