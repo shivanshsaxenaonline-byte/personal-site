@@ -92,15 +92,21 @@ rather than shipping quietly.
 Vercel builds from `main`. The GitHub Actions workflow does not deploy — it is
 the gate that decides whether a commit should be deployed at all.
 
-The domain is a free subdomain from [is-a.dev](https://is-a.dev), a community
-project that hands them out to developers through pull requests. DNS records
-are declared as JSON in their repository.
+The domain is a free name under `indevs.in`, handed out by
+[Stackryze](https://github.com/stackryze/FreeDomains). Stackryze only delegates
+it: the name's nameservers point at [Cloudflare](https://www.cloudflare.com),
+and every record lives there.
 
-The address records had to be `A` records rather than the `CNAME` Vercel
-suggests, and the reason is a nice piece of DNS trivia: a name carrying a CNAME
-cannot carry any other record type. This name also needs `MX` records, because
-mail to it is forwarded by [ImprovMX](https://improvmx.com) with a catch-all
-alias. A CNAME would have quietly made email impossible.
+That works on Cloudflare's free plan because `indevs.in` is on the
+[Public Suffix List](https://publicsuffix.org). Browsers and DNS providers
+treat `shivansh.indevs.in` as a registrable domain in its own right, the same
+way they treat `example.co.uk`, rather than as somebody else's subdomain.
+
+The address records are `A` records rather than the `CNAME` Vercel suggests,
+and the reason is a nice piece of DNS trivia: a name carrying a CNAME cannot
+carry any other record type. This name also needs `MX` records, because mail to
+it is handled by Cloudflare Email Routing with a catch-all rule. A CNAME would
+have quietly made email impossible.
 
 The catch-all is why the address on the [contact page](/contact/) cycles. Every
 alias it shows reaches the same inbox, because every address at the domain

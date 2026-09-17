@@ -18,8 +18,8 @@ const [CONTACT_LOCAL_PART, CONTACT_DOMAIN] = CONTACT_ADDRESS.split('@');
  *
  * The link always resolves to `CONTACT_ADDRESS`, so these are decorative — but
  * they should still be true, because the joke is that they all reach you. The
- * domain's MX records point at ImprovMX with a catch-all alias, so every local
- * part at the domain is delivered to the same inbox.
+ * domain's mail is handled by Cloudflare Email Routing with a catch-all rule,
+ * so every local part at the domain is delivered to the same inbox.
  *
  * Plain words only. A catch-all accepts hyphens and dots too, but the address
  * reads as a sentence fragment when it is just words, and it wraps cleanly.

@@ -5,7 +5,7 @@
 import profile from '@/data/profile.json';
 
 // Site configuration
-export const SITE_URL = 'https://shivanshsaxena.is-a.dev';
+export const SITE_URL = 'https://shivansh.indevs.in';
 export const AUTHOR_NAME = profile.name;
 export const TWITTER_HANDLE = '';
 /**
