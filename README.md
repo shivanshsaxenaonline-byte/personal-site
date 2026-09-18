@@ -43,7 +43,6 @@ npm run verify-export   # Inspect the generated HTML and XML
 npm run og              # Regenerate the share card
 npm run og:check        # Verify the committed share card is current
 npm run favicons        # Regenerate the favicon set from the monogram
-npm run portrait        # Regenerate the placeholder portrait
 ```
 
 CI checks formatting, linting, types, the share card, tests, the production
