@@ -3,7 +3,7 @@
 The site is a static Next.js export. Vercel builds it from `main`; the GitHub
 Actions workflow validates every push but does not deploy.
 
-Canonical URL: `https://shivanshsaxena.is-a.dev`
+Canonical URL: `https://shivansh.indevs.in`
 
 It is set in two places, and they must agree — `npm run verify-export` reads the
 first and the site reads the second:
@@ -30,7 +30,92 @@ fallback` and renders placeholder numbers. That is expected and harmless.
    `output: 'export'` in `next.config.mjs` is served as static files.
 4. Deploy. You get a working `*.vercel.app` URL immediately.
 
-## 3. Attach the is-a.dev subdomain
+## 3. Register shivansh.indevs.in
+
+`indevs.in` names are handed out free by
+[Stackryze](https://github.com/stackryze/FreeDomains). They only delegate the
+name — its nameservers — so every record lives with a DNS provider you choose.
+This setup uses Cloudflare, which is free and has a true catch-all for email.
+
+`indevs.in` is on the Public Suffix List, so Cloudflare's free plan accepts
+`shivansh.indevs.in` as a site of its own.
+
+Names are valid for **one year** and renew free. Stackryze emails a reminder
+before expiry — do not ignore it, or the site and the mailbox both go dark.
+
+1. Sign in with GitHub at <https://domain.stackryze.com> and register
+   `shivansh` under `indevs.in`.
+2. Create a free Cloudflare account, choose **Add a domain**, enter
+   `shivansh.indevs.in`, and pick the **Free** plan. Cloudflare shows two
+   nameservers ending in `ns.cloudflare.com`.
+3. In the Stackryze dashboard, set those two nameservers on the domain. The
+   zone for this site was assigned:
+
+   ```
+   audrey.ns.cloudflare.com
+   yahir.ns.cloudflare.com
+   ```
+
+   Stackryze offers three nameserver fields and pre-fills all three with its
+   own. Clear the third — leaving `ns3.stackryze.com` alongside Cloudflare's
+   two means resolvers sometimes ask a server that knows nothing about the
+   records below, and the failure is intermittent rather than obvious.
+
+4. Wait for Cloudflare to report the domain as **Active**. Usually minutes,
+   occasionally a few hours. Nothing in step 5 works before then: Email
+   Routing refuses to enable on a zone that is still `pending`, with
+   `Active zone required`.
+
+## 4. DNS records in Cloudflare
+
+The domain is already attached to the Vercel project, which issued these
+values. Add them under **DNS → Records**:
+
+| Type | Name      | Content                                                    | Proxy    |
+| ---- | --------- | ---------------------------------------------------------- | -------- |
+| A    | `@`       | `216.198.79.1`                                             | DNS only |
+| A    | `@`       | `64.29.17.1`                                               | DNS only |
+| TXT  | `_vercel` | `vc-domain-verify=shivansh.indevs.in,ba60da95121ec7201d04` | —        |
+
+Set the A records to **DNS only** (grey cloud). Vercel issues its own
+certificate and needs to see traffic arrive directly.
+
+Set the A records to the pair Vercel ranks first. It also offers a single
+`76.76.21.21` and two CNAME targets; the pair is what
+`GET /v6/domains/<domain>/config` returns as `recommendedIPv4` rank 1, and that
+endpoint is the authority if these values ever look stale.
+
+Use A records, not the CNAME Vercel also offers: a name carrying a CNAME cannot
+carry any other record, and this one needs MX records for mail.
+
+## 5. Catch-all email with Cloudflare Email Routing
+
+1. In Cloudflare: **Email → Email Routing → Get started**. Let it add the MX
+   and SPF records it proposes.
+2. **Destination addresses → Add** your Gmail, and click the verification link
+   Cloudflare sends. The address you signed up to Cloudflare with is already
+   verified and needs no click.
+3. **Routing rules → Catch-all address → Edit**: action _Send to an email_,
+   destination your Gmail, and enable it. A rule only accepts a destination
+   that is already verified.
+
+Every address at `shivansh.indevs.in` now reaches your inbox. Test with one
+nobody would guess before trusting it.
+
+Then merge the `feat/domain-email` branch, which switches the site's canonical
+URL and the contact address to this domain and makes the contact page cycle
+plain words before the `@`. Do not merge it before mail is arriving.
+
+Replying _as_ the custom address from Gmail is not an option long term: Gmail
+drops "Send as" for third-party addresses in January 2027. Reply from Gmail, or
+use a mail client with SMTP if the difference starts to matter.
+
+## Appendix: the is-a.dev alternative
+
+`shivanshsaxena.is-a.dev` was requested first and is a working fallback.
+Pull request is-a-dev/register#52805 carries its records.
+
+### Registering shivanshsaxena.is-a.dev
 
 1. In the Vercel project: **Settings → Domains → Add**, enter
    `shivanshsaxena.is-a.dev`.
@@ -51,7 +136,7 @@ fallback` and renders placeholder numbers. That is expected and harmless.
 is-a.dev answers every name through a wildcard, so check for
 `domains/<name>.json` in their repository instead.
 
-### If the pull request is denied
+#### If the pull request is denied
 
 is-a.dev's review bot closes a request automatically when the PR template is
 not fully filled in — every checkbox ticked, plus the website preview and
@@ -67,7 +152,7 @@ instead — the branch and its files are untouched by the denial:
 GitHub loads a blank template into a new pull request, so paste the completed
 one from `PR-BODY.md` in this folder over it rather than filling it in again.
 
-## 4. Email at the domain
+### Email on the is-a.dev name
 
 The contact page animates through aliases and the link resolves to whatever
 `email` is set to in `src/data/profile.json`.
@@ -77,7 +162,7 @@ Those work today, but only the part _after_ the `+` is free — the local part i
 fixed. `hello@gmail.com` is a stranger's address, not yours. A true catch-all,
 where anything before the `@` reaches you, needs your own domain.
 
-### Receiving anything@shivanshsaxena.is-a.dev — free
+#### Receiving anything@shivanshsaxena.is-a.dev — free
 
 The MX and SPF records are already in `is-a-dev/shivanshsaxena.json`. They are
 fixed ImprovMX values, not account-specific, so they go in with the same pull
@@ -103,7 +188,7 @@ Then make the site match:
 Do not make that second change before mail is actually arriving. Those
 addresses would bounce.
 
-### Sending from it — the part that costs something
+#### Sending from it — the part that costs something
 
 Receiving is free. Sending is where it gets awkward, and the reason is a
 deadline, not a limitation of this setup:
