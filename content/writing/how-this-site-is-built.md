@@ -66,7 +66,7 @@ Three things that are usually made by hand are scripts here:
 - `npm run favicons` renders the whole favicon set — 25 PNGs plus an ICO — from
   a single monogram definition. Changing the brand colour is a one-line edit
   and a re-run, not twenty-five trips through an image editor.
-- `npm run portrait` generates the placeholder portrait.
+- The portrait uses a JPEG photograph with dimensions verified against its image header.
 
 Committing generated assets rather than building them on demand keeps builds
 deterministic and means CI does not depend on Google Fonts being reachable.
