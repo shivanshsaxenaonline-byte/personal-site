@@ -19,7 +19,6 @@ If you are trying to get a messy business process into software that people will
 
 - B.Tech from Invertis University, Bareilly.
 - Interned at Patanjali on billing and operational software, where I built a leadership analytics dashboard with role-specific views for the CEO, COO, and HR.
-- Joined Kapeefit as the developer for internal systems, and received a 33% increment within two months.
 
 <!--
   TODO — replace this section with your own. Good material: how you got into
