@@ -1,5 +1,12 @@
 export interface Project {
   slug: string;
+  image: {
+    src: string;
+    alt: string;
+    caption: string;
+    width: number;
+    height: number;
+  };
   title: string;
   subtitle?: string;
   date: string;
@@ -24,6 +31,14 @@ const GH = 'https://github.com/shivanshsaxenaonline-byte';
 const data: Project[] = [
   {
     slug: 'kamour-sales-os',
+    image: {
+      src: '/images/projects/kamour-sales-os-use-case.webp',
+      alt: 'Illustration connecting a sales workstation with customer enquiries, doctor consultations, payment and orders, and follow-up activity.',
+      caption:
+        'Keeping the customer journey connected, from enquiry to follow-up.',
+      width: 1536,
+      height: 1024,
+    },
     title: 'Kamour Sales OS',
     subtitle: 'Enterprise sales CRM',
     source: `${GH}/kamour-sales-os`,
@@ -71,6 +86,14 @@ const data: Project[] = [
   },
   {
     slug: 'pms-pc-intelligence-dashboard',
+    image: {
+      src: '/images/projects/pms-pc-intelligence-dashboard-use-case.webp',
+      alt: 'Illustration of leadership comparing performance dashboards supplied by shared spreadsheet data.',
+      caption:
+        'Shared daily data becomes a clearer view of business performance.',
+      width: 1536,
+      height: 1024,
+    },
     title: 'PMS vs PC Intelligence Dashboard',
     subtitle: 'Management analytics',
     website: 'https://pms-pc-dashboard-navy.vercel.app',
@@ -118,6 +141,14 @@ const data: Project[] = [
   },
   {
     slug: 'smart-mall-ai',
+    image: {
+      src: '/images/projects/smart-mall-ai-use-case.webp',
+      alt: 'Illustrated mall entrance with person-tracking boxes, a directional counting line, and a connected monitoring dashboard and event log.',
+      caption:
+        'A camera feed becomes entry and exit events that operators can monitor.',
+      width: 1536,
+      height: 1024,
+    },
     title: 'Smart Mall AI Crowd & Attendance',
     subtitle: 'Computer vision',
     source: `${GH}/ai-mall-attendance`,
@@ -164,6 +195,14 @@ const data: Project[] = [
   },
   {
     slug: 'plant-health-ai',
+    image: {
+      src: '/images/projects/plant-health-ai-use-case.webp',
+      alt: 'Illustration of healthy and spotted crop leaves, a hand capturing a leaf image on a phone, and a connected classification result.',
+      caption:
+        'From a crop image to an accessible plant-health classification.',
+      width: 1536,
+      height: 1024,
+    },
     title: 'Plant Health AI',
     subtitle: 'Deep learning application',
     source: `${GH}/Plant-Health-AI`,
@@ -210,6 +249,14 @@ const data: Project[] = [
   },
   {
     slug: 'kredo',
+    image: {
+      src: '/images/projects/kredo-use-case.webp',
+      alt: 'Illustrated CRM workspace connecting customer cards and a sales pipeline with a task calendar, conversation history, and team activity.',
+      caption:
+        'Customer context and the next action, together in one workspace.',
+      width: 1536,
+      height: 1024,
+    },
     title: 'Kredo',
     subtitle: 'Business CRM platform',
     date: '2025-01-01',
@@ -256,6 +303,14 @@ const data: Project[] = [
   },
   {
     slug: 'daily-settlements-update',
+    image: {
+      src: '/images/projects/daily-settlements-update-use-case.webp',
+      alt: 'Illustration of spreadsheet rows flowing into desktop and mobile sales dashboards with trends and date-based reports.',
+      caption:
+        'A working spreadsheet becomes a dashboard for desktop and mobile.',
+      width: 1536,
+      height: 1024,
+    },
     title: 'Daily Settlements Update',
     subtitle: 'Live sales dashboard',
     website: 'https://effervescent-biscuit-f8e2bd.netlify.app/',

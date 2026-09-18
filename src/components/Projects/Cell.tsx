@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import type { Project } from '@/data/projects';
 
-import ProjectDiagram from './ProjectDiagram';
+import ProjectImage from './ProjectImage';
 import ProjectLinks from './ProjectLinks';
 
 export default function Cell({ data }: { data: Project }) {
@@ -34,7 +34,7 @@ export default function Cell({ data }: { data: Project }) {
           <ProjectLinks project={data} />
         </div>
       </div>
-      <ProjectDiagram project={data} />
+      <ProjectImage project={data} />
     </article>
   );
 }

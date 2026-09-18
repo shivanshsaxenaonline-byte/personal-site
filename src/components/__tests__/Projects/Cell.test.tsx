@@ -33,15 +33,14 @@ describe('Cell', () => {
     expect(screen.getByText('2025')).toBeInTheDocument();
   });
 
-  it('renders the project-specific schematic as accessible text', () => {
+  it('renders the generated project image with a descriptive alternative and caption', () => {
     render(<Cell data={mockProject} />);
-    expect(
-      screen.getByRole('figure', {
-        name: `${mockProject.title} workflow schematic`,
-      }),
-    ).toBeInTheDocument();
-    for (const step of mockProject.workflow)
-      expect(screen.getByText(step)).toBeInTheDocument();
+    const image = screen.getByRole('img', { name: mockProject.image.alt });
+    expect(image).toHaveAttribute('src', mockProject.image.src);
+    expect(image).toHaveAttribute('width', String(mockProject.image.width));
+    expect(image).toHaveAttribute('height', String(mockProject.image.height));
+    expect(screen.getByText(mockProject.image.caption)).toBeInTheDocument();
+    expect(screen.getByText('Concept illustration')).toBeInTheDocument();
   });
 
   it('keeps the case study available when there is no public link', () => {
