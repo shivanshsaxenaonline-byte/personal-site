@@ -134,6 +134,7 @@ export default function WritingPage() {
               RSS
             </a>
           </div>
+          <p className="page-subtitle">{WRITING_DESCRIPTION}</p>
         </header>
 
         {internal.length > 0 && (

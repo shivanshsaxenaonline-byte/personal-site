@@ -34,7 +34,7 @@ export const HOME_URL = `${SITE_URL}/`;
 
 // Shared so the /writing metadata and the Blog node stay in sync.
 export const WRITING_DESCRIPTION =
-  'Articles on AI security, LLM red teaming, and trust & safety.';
+  'Notes on useful software, practical AI, automation, and learning through small projects.';
 
 type SchemaNode = Record<string, unknown>;
 
