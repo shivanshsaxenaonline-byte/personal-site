@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import ProjectDiagram from '@/components/Projects/ProjectDiagram';
+import ProjectImage from '@/components/Projects/ProjectImage';
 import ProjectLinks from '@/components/Projects/ProjectLinks';
 import { SchemaGraph } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
@@ -74,6 +74,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <ProjectLinks project={project} />
           </div>
         </header>
+        <ProjectImage project={project} fullWidth />
         <nav className="project-section-nav" aria-label="In this project">
           {sections.map(([id, label]) => (
             <a key={id} href={`#${id}`}>
@@ -103,7 +104,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <section id="workflow" aria-labelledby="workflow-title">
             <span className="project-eyebrow">03 / The system</span>
             <h2 id="workflow-title">How it works</h2>
-            <ProjectDiagram project={project} />
+            <ol className="project-workflow-steps">
+              {project.workflow.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
             <p>{project.workflowNote}</p>
           </section>
           <section id="stack" aria-labelledby="stack-title">
