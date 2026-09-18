@@ -48,9 +48,23 @@ before expiry — do not ignore it, or the site and the mailbox both go dark.
 2. Create a free Cloudflare account, choose **Add a domain**, enter
    `shivansh.indevs.in`, and pick the **Free** plan. Cloudflare shows two
    nameservers ending in `ns.cloudflare.com`.
-3. In the Stackryze dashboard, set those two nameservers on the domain.
+3. In the Stackryze dashboard, set those two nameservers on the domain. The
+   zone for this site was assigned:
+
+   ```
+   audrey.ns.cloudflare.com
+   yahir.ns.cloudflare.com
+   ```
+
+   Stackryze offers three nameserver fields and pre-fills all three with its
+   own. Clear the third — leaving `ns3.stackryze.com` alongside Cloudflare's
+   two means resolvers sometimes ask a server that knows nothing about the
+   records below, and the failure is intermittent rather than obvious.
+
 4. Wait for Cloudflare to report the domain as **Active**. Usually minutes,
-   occasionally a few hours.
+   occasionally a few hours. Nothing in step 5 works before then: Email
+   Routing refuses to enable on a zone that is still `pending`, with
+   `Active zone required`.
 
 ## 4. DNS records in Cloudflare
 
@@ -66,6 +80,11 @@ values. Add them under **DNS → Records**:
 Set the A records to **DNS only** (grey cloud). Vercel issues its own
 certificate and needs to see traffic arrive directly.
 
+Set the A records to the pair Vercel ranks first. It also offers a single
+`76.76.21.21` and two CNAME targets; the pair is what
+`GET /v6/domains/<domain>/config` returns as `recommendedIPv4` rank 1, and that
+endpoint is the authority if these values ever look stale.
+
 Use A records, not the CNAME Vercel also offers: a name carrying a CNAME cannot
 carry any other record, and this one needs MX records for mail.
 
@@ -74,9 +93,11 @@ carry any other record, and this one needs MX records for mail.
 1. In Cloudflare: **Email → Email Routing → Get started**. Let it add the MX
    and SPF records it proposes.
 2. **Destination addresses → Add** your Gmail, and click the verification link
-   Cloudflare sends.
+   Cloudflare sends. The address you signed up to Cloudflare with is already
+   verified and needs no click.
 3. **Routing rules → Catch-all address → Edit**: action _Send to an email_,
-   destination your Gmail, and enable it.
+   destination your Gmail, and enable it. A rule only accepts a destination
+   that is already verified.
 
 Every address at `shivansh.indevs.in` now reaches your inbox. Test with one
 nobody would guess before trusting it.
