@@ -25,7 +25,6 @@ const work: Position[] = [
       'Designed the data model and migration approach for 52,000+ legacy CRM records, covering customer deduplication, lead ownership, consultations, prescriptions, orders, follow-ups, payment status, and repeat-order workflows.',
       'Integrated Supabase, Razorpay, Zoho CRM, Google Sheets, WATI/WhatsApp, Shopify, Meta, and advertising platforms through APIs and webhooks.',
       'Worked end to end across requirement analysis, UI/UX, frontend, backend, database design, API integration, debugging, deployment, and production improvements.',
-      'Received a 33% salary increment within two months of joining, based on performance and technical ownership.',
     ],
   },
   {
