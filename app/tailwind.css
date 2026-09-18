@@ -33,6 +33,7 @@
 
 /* Page-Specific */
 @import './styles/pages/home.css';
+@import './styles/pages/projects.css';
 @import './styles/pages/resume.css';
 @import './styles/pages/writing.css';
 @import './styles/pages/content.css';

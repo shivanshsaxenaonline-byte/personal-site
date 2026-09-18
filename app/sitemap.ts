@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 
+import projects from '@/data/projects';
 import { getAllPosts } from '@/lib/posts';
 import { SITE_URL } from '@/lib/utils';
 
@@ -52,5 +53,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     ...postEntries,
+    ...projects.map((project) => ({
+      url: `${SITE_URL}/projects/${project.slug}/`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
   ];
 }

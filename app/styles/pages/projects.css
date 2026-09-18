@@ -1,0 +1,271 @@
+/* Project summaries and case studies share the site's ruled, editorial layout. */
+.home-projects {
+  max-width: var(--measure-page);
+  margin: 4.5rem auto 0;
+  border-top: var(--rule-strong) solid var(--color-fg-bold);
+  padding-top: 1.25rem;
+}
+
+.project-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+  border-bottom: var(--rule) solid var(--color-border);
+}
+
+.project-entry-copy {
+  min-width: 0;
+}
+
+.project-eyebrow {
+  display: block;
+  margin: 0 0 0.875rem;
+  color: var(--color-fg-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.project-entry h3 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.project-entry h3 a {
+  color: var(--color-fg-bold);
+}
+.project-entry h3 a:hover {
+  color: var(--color-accent);
+}
+
+.project-summary {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-fg-bold);
+}
+
+.project-benefit {
+  margin: 0 0 1.25rem;
+  font-size: var(--text-base);
+  color: var(--color-fg-light);
+  line-height: var(--leading-normal);
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-stack li {
+  margin: 0;
+  padding: 0.35rem 0.625rem;
+  border: var(--rule) solid var(--color-border-alt);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.project-actions a,
+.project-back,
+.project-section-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-ui);
+  background-image: none;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.project-actions .project-more {
+  padding: 0.5rem 0.875rem;
+  color: var(--color-on-accent);
+  background-color: var(--color-accent-fill);
+  text-decoration: none;
+}
+.project-actions .project-more:hover {
+  background-color: var(--color-accent-fill-hover);
+}
+
+.project-link-note {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-fg-light);
+}
+
+.project-diagram {
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem;
+  border: var(--rule) solid var(--color-border-alt);
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(var(--color-border-bg) var(--rule), transparent var(--rule)),
+    linear-gradient(90deg, var(--color-border-bg) var(--rule), transparent var(--rule));
+  background-size: 1.5rem 1.5rem;
+}
+
+.project-diagram figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+.project-diagram figcaption span {
+  color: var(--color-fg-light);
+}
+
+.project-diagram-flow {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-diagram-flow li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-height: 3.25rem;
+  margin: 0;
+  padding: 0.65rem 0.875rem;
+  border: var(--rule) solid var(--color-control-border);
+  background: var(--color-bg);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  line-height: var(--leading-snug);
+}
+
+.project-diagram-flow li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 1.45rem;
+  width: 0.45rem;
+  height: 0.8rem;
+  border-right: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: skewY(35deg);
+}
+
+.project-diagram-number {
+  flex: 0 0 auto;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.project-detail-header {
+  margin: 2rem 0;
+}
+.project-detail-header > p:not(.project-eyebrow) {
+  max-width: var(--measure-read);
+}
+.project-detail-header .page-title {
+  margin-bottom: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.project-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  padding: 0.75rem 0;
+  border-top: var(--rule-strong) solid var(--color-fg-bold);
+  border-bottom: var(--rule) solid var(--color-border);
+}
+
+.project-detail-body {
+  max-width: var(--measure-read);
+  margin: 0 auto;
+}
+.project-detail-body section {
+  padding: 3rem 0;
+  border-bottom: var(--rule) solid var(--color-border);
+  scroll-margin-top: 7rem;
+}
+.project-detail-body h2 {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+}
+.project-detail-body p {
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+.project-detail-body .project-diagram {
+  margin-bottom: 1.5rem;
+}
+.project-implementation {
+  margin-top: 2rem;
+}
+.project-implementation > div {
+  padding: 1.25rem 0;
+  border-top: var(--rule) solid var(--color-border);
+}
+.project-implementation h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+}
+.project-implementation p {
+  margin: 0;
+}
+.project-future-note {
+  color: var(--color-fg-light);
+}
+.project-future-list {
+  padding-left: 1.25rem;
+}
+.project-future-list li {
+  padding-left: 0.25rem;
+  margin-bottom: 0.875rem;
+  font-size: var(--text-md);
+}
+.project-detail-footer {
+  padding-top: 2rem;
+}
+
+@media (max-width: 760px) {
+  .home-projects {
+    margin-top: 3.5rem;
+  }
+  .project-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+  .project-diagram {
+    padding: 1rem;
+  }
+  .project-detail-body section {
+    padding: 2rem 0;
+  }
+}

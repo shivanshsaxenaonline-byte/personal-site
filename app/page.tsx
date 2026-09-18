@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import Cell from '@/components/Projects/Cell';
 import { SchemaGraph } from '@/components/Schema';
 import Hero from '@/components/Template/Hero';
 import PageWrapper from '@/components/Template/PageWrapper';
+import projects from '@/data/projects';
 import { HOME_URL, profilePageNode } from '@/lib/schema';
 import {
   AUTHOR_NAME,
@@ -31,6 +33,22 @@ export default function HomePage() {
         nodes={[profilePageNode({ url: HOME_URL, name: AUTHOR_NAME })]}
       />
       <Hero />
+      <section className="home-projects" aria-labelledby="home-projects-title">
+        <div className="home-writing-header">
+          <div>
+            <span className="home-section-kicker">Ideas put to work</span>
+            <h2 id="home-projects-title">Selected projects</h2>
+          </div>
+          <Link href="/projects/" className="home-writing-all">
+            All projects
+          </Link>
+        </div>
+        {projects
+          .filter((project) => project.featured)
+          .map((project) => (
+            <Cell key={project.slug} data={project} />
+          ))}
+      </section>
       <section className="home-writing" aria-labelledby="home-writing-title">
         <div className="home-writing-header">
           <div>
