@@ -51,9 +51,7 @@ describe('Footer', () => {
       'href',
       '/resume',
     );
-    // Labelled "Archive" to match the nav and the page's own heading;
-    // the route stays /projects.
-    expect(screen.getByRole('link', { name: /archive/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute(
       'href',
       '/projects',
     );

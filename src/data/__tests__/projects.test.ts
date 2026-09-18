@@ -17,12 +17,6 @@ describe('projects data', () => {
       expect(typeof project.title).toBe('string');
       expect(typeof project.date).toBe('string');
       expect(typeof project.desc).toBe('string');
-
-      // `image` is optional — `Cell` falls back to a monogram tile — but when
-      // it is set it has to be a string path.
-      if (project.image !== undefined) {
-        expect(typeof project.image).toBe('string');
-      }
     }
   });
 
@@ -38,12 +32,6 @@ describe('projects data', () => {
     }
   });
 
-  it('image paths start with / when present', () => {
-    for (const project of projects.filter((p) => p.image !== undefined)) {
-      expect(project.image?.startsWith('/')).toBe(true);
-    }
-  });
-
   it('dates are valid date strings', () => {
     for (const project of projects) {
       const date = new Date(project.date);
@@ -55,8 +43,8 @@ describe('projects data', () => {
     const urlRegex = /^https?:\/\/.+/;
 
     for (const project of projects) {
-      if (project.link) {
-        expect(project.link).toMatch(urlRegex);
+      for (const link of [project.website, project.source].filter(Boolean)) {
+        expect(link).toMatch(urlRegex);
       }
     }
   });
