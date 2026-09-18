@@ -12,10 +12,10 @@ export const TWITTER_HANDLE = '@Shivansh1821707';
  * The portrait. Used for JSON-LD `image`, where the value should be a picture
  * of the person, not a designed card.
  */
-export const SITE_IMAGE_PATH = '/images/me.png';
+export const SITE_IMAGE_PATH = '/images/portrait.jpg';
 export const SITE_IMAGE_DIMENSIONS = {
-  width: 1024,
-  height: 1024,
+  width: 1254,
+  height: 1254,
 } as const;
 
 /**
