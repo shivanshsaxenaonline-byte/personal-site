@@ -14,27 +14,39 @@ const CONTACT_ADDRESS = profile.email;
 const [CONTACT_LOCAL_PART, CONTACT_DOMAIN] = CONTACT_ADDRESS.split('@');
 
 /**
- * The aliases the prefix cycles through.
+ * The aliases the prefix cycles through — the upstream sequence, restored.
  *
- * The link always resolves to `CONTACT_ADDRESS`, so these are decorative — but
- * they should still be true, because the joke is that they all reach you. The
- * domain's mail is handled by Cloudflare Email Routing with a catch-all rule,
- * so every local part at the domain is delivered to the same inbox.
+ * It was cut to plain words while the contact address was still a Gmail
+ * `+suffix`, where only the part after the `+` was ever free. That is no
+ * longer the constraint: mail for the domain is handled by Cloudflare Email
+ * Routing with a catch-all rule, so every local part here is genuinely
+ * deliverable — verified by a `RCPT TO` against Cloudflare's MX, which
+ * answered `250 Ok` to an address that had never existed.
  *
- * Plain words only. A catch-all accepts hyphens and dots too, but the address
- * reads as a sentence fragment when it is just words, and it wraps cleanly.
- * If the catch-all is ever removed, this list has to go back to addresses that
- * exist, or visitors will write to mailboxes that bounce.
+ * Three entries are deliberately impossible. A bare space is not legal in an
+ * unquoted local part, so "but not this :(  " cannot be addressed however
+ * permissive the catch-all is — which is the punchline the two lines before
+ * it set up. They are safe to show because the alias is decorative: the
+ * anchor below always resolves to `CONTACT_ADDRESS`.
+ *
+ * If the catch-all is ever removed, this list has to go back to addresses
+ * that exist, or visitors will write to mailboxes that bounce.
  */
 const messages = [
   CONTACT_LOCAL_PART,
   'hello',
-  'hireme',
-  'projects',
-  'collab',
-  'anything',
-  'literallyanything',
-  'whatever',
+  'hola',
+  'you-can-email-me-at-literally-anything! Really',
+  'well, not anything. But most things',
+  'like-this',
+  'or-this',
+  'but not this :(  ',
+  'you.can.also.email.me.with.specific.topics.like',
+  'just-saying-hi',
+  'please-work-for-us',
+  'help',
+  'admin',
+  'or-I-really-like-your-website',
   'thanks',
 ];
 
